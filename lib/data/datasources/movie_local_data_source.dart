@@ -1,5 +1,5 @@
 import 'package:ditonton/common/exception.dart';
-import 'package:ditonton/data/datasources/db/database_helper.dart';
+import 'package:ditonton/data/datasources/db/movie_database_helper.dart';
 import 'package:ditonton/data/models/movie_table.dart';
 
 abstract class MovieLocalDataSource {
@@ -10,7 +10,7 @@ abstract class MovieLocalDataSource {
 }
 
 class MovieLocalDataSourceImpl implements MovieLocalDataSource {
-  final DatabaseHelper databaseHelper;
+  final MovieDatabaseHelper databaseHelper;
 
   MovieLocalDataSourceImpl({required this.databaseHelper});
 
