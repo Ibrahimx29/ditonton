@@ -31,7 +31,7 @@ class TvSeriesTable extends Equatable {
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'title': name,
+        'name': name,
         'posterPath': posterPath,
         'overview': overview,
       };

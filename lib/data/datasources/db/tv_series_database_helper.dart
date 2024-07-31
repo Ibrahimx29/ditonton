@@ -21,11 +21,11 @@ class TvSeriesDatabaseHelper {
     return _database;
   }
 
-  static const String _tblWatchlist = 'watchlist';
+  static const String _tblWatchlist = 'watchlist_tv';
 
   Future<Database> _initDb() async {
     final path = await getDatabasesPath();
-    final databasePath = '$path/ditonton.db';
+    final databasePath = '$path/ditonton2.db';
 
     var db = await openDatabase(databasePath, version: 1, onCreate: _onCreate);
     return db;
@@ -35,7 +35,7 @@ class TvSeriesDatabaseHelper {
     await db.execute('''
       CREATE TABLE  $_tblWatchlist (
         id INTEGER PRIMARY KEY,
-        title TEXT,
+        name TEXT,
         overview TEXT,
         posterPath TEXT
       );
