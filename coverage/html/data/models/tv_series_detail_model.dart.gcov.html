@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">61</td>
+            <td class="headerCovTableEntry">76</td>
             <td class="headerCovTableEntry">108</td>
-            <td class="headerCovTableEntryLo">56.5 %</td>
+            <td class="headerCovTableEntryLo">70.4 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2024-07-30 20:50:33</td>
+            <td class="headerValue">2024-08-03 21:00:01</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -71,7 +71,7 @@
 <a name="9"><span class="lineNum">       9 </span>            : import 'package:equatable/equatable.dart';</a>
 <a name="10"><span class="lineNum">      10 </span>            : </a>
 <a name="11"><span class="lineNum">      11 </span>            : class TvSeriesDetailResponse extends Equatable {</a>
-<a name="12"><span class="lineNum">      12 </span><span class="lineCov">          1 :   TvSeriesDetailResponse({</span></a>
+<a name="12"><span class="lineNum">      12 </span><span class="lineCov">          2 :   TvSeriesDetailResponse({</span></a>
 <a name="13"><span class="lineNum">      13 </span>            :     required this.adult,</a>
 <a name="14"><span class="lineNum">      14 </span>            :     required this.backdropPath,</a>
 <a name="15"><span class="lineNum">      15 </span>            :     required this.createdBy,</a>
@@ -218,21 +218,21 @@
 <a name="156"><span class="lineNum">     156 </span><span class="lineNoCov">          0 :         &quot;vote_count&quot;: voteCount,</span></a>
 <a name="157"><span class="lineNum">     157 </span>            :       };</a>
 <a name="158"><span class="lineNum">     158 </span>            : </a>
-<a name="159"><span class="lineNum">     159 </span><span class="lineNoCov">          0 :   TvSeriesDetail toEntity() {</span></a>
-<a name="160"><span class="lineNum">     160 </span><span class="lineNoCov">          0 :     return TvSeriesDetail(</span></a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineNoCov">          0 :       adult: this.adult,</span></a>
-<a name="162"><span class="lineNum">     162 </span><span class="lineNoCov">          0 :       backdropPath: this.backdropPath,</span></a>
-<a name="163"><span class="lineNum">     163 </span><span class="lineNoCov">          0 :       genres: this.genres.map((genre) =&gt; genre.toEntity()).toList(),</span></a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineNoCov">          0 :       id: this.id,</span></a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineNoCov">          0 :       originalName: this.originalName,</span></a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineNoCov">          0 :       overview: this.overview,</span></a>
-<a name="167"><span class="lineNum">     167 </span><span class="lineNoCov">          0 :       posterPath: this.posterPath,</span></a>
-<a name="168"><span class="lineNum">     168 </span><span class="lineNoCov">          0 :       firstAirDate: this.firstAirDate,</span></a>
-<a name="169"><span class="lineNum">     169 </span><span class="lineNoCov">          0 :       numberOfEpisodes: this.numberOfEpisodes,</span></a>
-<a name="170"><span class="lineNum">     170 </span><span class="lineNoCov">          0 :       numberOfSeasons: this.numberOfSeasons,</span></a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineNoCov">          0 :       name: this.name,</span></a>
-<a name="172"><span class="lineNum">     172 </span><span class="lineNoCov">          0 :       voteAverage: this.voteAverage,</span></a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineNoCov">          0 :       voteCount: this.voteCount,</span></a>
+<a name="159"><span class="lineNum">     159 </span><span class="lineCov">          1 :   TvSeriesDetail toEntity() {</span></a>
+<a name="160"><span class="lineNum">     160 </span><span class="lineCov">          1 :     return TvSeriesDetail(</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineCov">          1 :       adult: this.adult,</span></a>
+<a name="162"><span class="lineNum">     162 </span><span class="lineCov">          1 :       backdropPath: this.backdropPath,</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">          5 :       genres: this.genres.map((genre) =&gt; genre.toEntity()).toList(),</span></a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineCov">          1 :       id: this.id,</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">          1 :       originalName: this.originalName,</span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">          1 :       overview: this.overview,</span></a>
+<a name="167"><span class="lineNum">     167 </span><span class="lineCov">          1 :       posterPath: this.posterPath,</span></a>
+<a name="168"><span class="lineNum">     168 </span><span class="lineCov">          1 :       firstAirDate: this.firstAirDate,</span></a>
+<a name="169"><span class="lineNum">     169 </span><span class="lineCov">          1 :       numberOfEpisodes: this.numberOfEpisodes,</span></a>
+<a name="170"><span class="lineNum">     170 </span><span class="lineCov">          1 :       numberOfSeasons: this.numberOfSeasons,</span></a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">          1 :       name: this.name,</span></a>
+<a name="172"><span class="lineNum">     172 </span><span class="lineCov">          1 :       voteAverage: this.voteAverage,</span></a>
+<a name="173"><span class="lineNum">     173 </span><span class="lineCov">          1 :       voteCount: this.voteCount,</span></a>
 <a name="174"><span class="lineNum">     174 </span>            :     );</a>
 <a name="175"><span class="lineNum">     175 </span>            :   }</a>
 <a name="176"><span class="lineNum">     176 </span>            : </a>
