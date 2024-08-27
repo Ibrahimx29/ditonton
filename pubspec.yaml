@@ -43,6 +43,7 @@ dependencies:
     path: about
   core:
     path: core
+  encrypt: ^5.0.3
 
 dev_dependencies:
   mockito: ^5.0.8
