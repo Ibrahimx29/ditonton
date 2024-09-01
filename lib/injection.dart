@@ -1,3 +1,4 @@
+import 'package:core/bloc/search_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:core/core.dart';
@@ -81,6 +82,11 @@ void init() {
   locator.registerFactory(
     () => WatchlistTvSeriesNotifier(
       getWatchlistTvSeries: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => SearchBloc(
+      locator(),
     ),
   );
 

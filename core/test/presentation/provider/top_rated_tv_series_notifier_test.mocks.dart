@@ -3,12 +3,9 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i4;
 
-import 'package:core/core.dart' as _i6;
-import 'package:core/domain/entities/tv_series.dart' as _i7;
-import 'package:core/domain/repositories/tv_series_repository.dart' as _i2;
-import 'package:core/domain/usecases/get_top_rated_tv_series.dart' as _i4;
+import 'package:core/core.dart' as _i2;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -50,7 +47,7 @@ class _FakeEither_1<L, R> extends _i1.SmartFake implements _i3.Either<L, R> {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetTopRatedTvSeries extends _i1.Mock
-    implements _i4.GetTopRatedTvSeries {
+    implements _i2.GetTopRatedTvSeries {
   MockGetTopRatedTvSeries() {
     _i1.throwOnMissingStub(this);
   }
@@ -65,20 +62,20 @@ class MockGetTopRatedTvSeries extends _i1.Mock
       ) as _i2.TvSeriesRepository);
 
   @override
-  _i5.Future<_i3.Either<_i6.Failure, List<_i7.Serial>>> execute() =>
+  _i4.Future<_i3.Either<_i2.Failure, List<_i2.Serial>>> execute() =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
           [],
         ),
         returnValue:
-            _i5.Future<_i3.Either<_i6.Failure, List<_i7.Serial>>>.value(
-                _FakeEither_1<_i6.Failure, List<_i7.Serial>>(
+            _i4.Future<_i3.Either<_i2.Failure, List<_i2.Serial>>>.value(
+                _FakeEither_1<_i2.Failure, List<_i2.Serial>>(
           this,
           Invocation.method(
             #execute,
             [],
           ),
         )),
-      ) as _i5.Future<_i3.Either<_i6.Failure, List<_i7.Serial>>>);
+      ) as _i4.Future<_i3.Either<_i2.Failure, List<_i2.Serial>>>);
 }
