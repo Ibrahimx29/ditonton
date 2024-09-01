@@ -43,6 +43,7 @@ dependencies:
     path: about
   core:
     path: core
+  encrypt: ^5.0.3
   flutter_bloc: ^8.1.6
 
 dev_dependencies:
