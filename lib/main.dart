@@ -1,4 +1,5 @@
 import 'package:about/about.dart';
+import 'package:core/bloc/movie_list_bloc.dart';
 import 'package:core/bloc/search_bloc.dart';
 import 'package:core/core.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,8 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieListNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<MovieListBloc>(),
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<TvSeriesListNotifier>(),
