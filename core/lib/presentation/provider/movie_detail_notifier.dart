@@ -1,31 +1,10 @@
-import 'package:core/domain/entities/movie.dart';
-import 'package:core/domain/entities/movie_detail.dart';
-import 'package:core/domain/usecases/get_movie_detail.dart';
-import 'package:core/domain/usecases/get_movie_recommendations.dart';
 import 'package:core/core.dart';
-import 'package:core/domain/usecases/get_movie_watchlist_status.dart';
-import 'package:core/domain/usecases/remove_movie_watchlist.dart';
-import 'package:core/domain/usecases/save_movie_watchlist.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class MovieDetailNotifier extends ChangeNotifier {
   static const watchlistAddSuccessMessage = 'Added to Watchlist';
   static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
-
-  final GetMovieDetail getMovieDetail;
-  final GetMovieRecommendations getMovieRecommendations;
-  final GetMovieWatchListStatus getWatchListStatus;
-  final SaveMovieWatchlist saveWatchlist;
-  final RemoveMovieWatchlist removeWatchlist;
-
-  MovieDetailNotifier({
-    required this.getMovieDetail,
-    required this.getMovieRecommendations,
-    required this.getWatchListStatus,
-    required this.saveWatchlist,
-    required this.removeWatchlist,
-  });
 
   late MovieDetail _movie;
   MovieDetail get movie => _movie;
@@ -44,6 +23,23 @@ class MovieDetailNotifier extends ChangeNotifier {
 
   bool _isAddedtoWatchlist = false;
   bool get isAddedToWatchlist => _isAddedtoWatchlist;
+
+  String _watchlistMessage = '';
+  String get watchlistMessage => _watchlistMessage;
+
+  final GetMovieDetail getMovieDetail;
+  final GetMovieRecommendations getMovieRecommendations;
+  final GetMovieWatchListStatus getWatchListStatus;
+  final SaveMovieWatchlist saveWatchlist;
+  final RemoveMovieWatchlist removeWatchlist;
+
+  MovieDetailNotifier({
+    required this.getMovieDetail,
+    required this.getMovieRecommendations,
+    required this.getWatchListStatus,
+    required this.saveWatchlist,
+    required this.removeWatchlist,
+  });
 
   Future<void> fetchMovieDetail(int id) async {
     _movieState = RequestState.Loading;
@@ -75,9 +71,6 @@ class MovieDetailNotifier extends ChangeNotifier {
       },
     );
   }
-
-  String _watchlistMessage = '';
-  String get watchlistMessage => _watchlistMessage;
 
   Future<void> addWatchlist(MovieDetail movie) async {
     final result = await saveWatchlist.execute(movie);

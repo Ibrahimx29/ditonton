@@ -1,15 +1,17 @@
+import 'package:core/bloc/watchlist_movies_bloc.dart';
+import 'package:core/bloc/watchlist_tv_series_bloc.dart';
 import 'package:core/core.dart';
-import 'package:core/presentation/provider/watchlist_movie_notifier.dart';
-import 'package:core/presentation/provider/watchlist_tv_series_notifier.dart';
 import 'package:core/presentation/widgets/watchlist_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-movie';
 
+  const WatchlistMoviesPage({super.key});
+
   @override
-  _WatchlistMoviesPageState createState() => _WatchlistMoviesPageState();
+  State<WatchlistMoviesPage> createState() => _WatchlistMoviesPageState();
 }
 
 class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
@@ -18,10 +20,10 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   void initState() {
     super.initState();
     Future.microtask(() {
-      Provider.of<WatchlistMovieNotifier>(context, listen: false)
-          .fetchWatchlistMovies();
-      Provider.of<WatchlistTvSeriesNotifier>(context, listen: false)
-          .fetchWatchlistTvSeries();
+      final movies = context.read<WatchlistMoviesBloc>();
+      movies.add(FetchWatchlistMovies());
+      final tvSeries = context.read<WatchlistTvSeriesBloc>();
+      tvSeries.add(FetchWatchlistTvSeries());
     });
   }
 
@@ -31,51 +33,56 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
+  @override
   void didPopNext() {
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
-        .fetchWatchlistMovies();
-    Provider.of<WatchlistTvSeriesNotifier>(context, listen: false)
-        .fetchWatchlistTvSeries();
+    final movies = context.read<WatchlistMoviesBloc>();
+    movies.add(FetchWatchlistMovies());
+    final tvSeries = context.read<WatchlistTvSeriesBloc>();
+    tvSeries.add(FetchWatchlistTvSeries());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Watchlist'),
+        title: const Text('Watchlist'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer2<WatchlistMovieNotifier, WatchlistTvSeriesNotifier>(
-          builder: (context, movieNotifier, tvSeriesNotifier, child) {
-            if (movieNotifier.watchlistState == RequestState.Loading ||
-                tvSeriesNotifier.watchlistState == RequestState.Loading) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (movieNotifier.watchlistState == RequestState.Error) {
-              return Center(
-                key: Key('error_message'),
-                child: Text(movieNotifier.message),
-              );
-            } else if (tvSeriesNotifier.watchlistState == RequestState.Error) {
-              return Center(
-                key: Key('error_message'),
-                child: Text(tvSeriesNotifier.message),
-              );
-            } else {
-              final combinedList = [
-                ...movieNotifier.watchlistMovies,
-                ...tvSeriesNotifier.watchlistTvSeries,
-              ];
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  final item = combinedList[index];
-                  return CombinedCard(item);
-                },
-                itemCount: combinedList.length,
-              );
-            }
+        child: BlocBuilder<WatchlistMoviesBloc, WatchlistMoviesState>(
+          builder: (context, movieState) {
+            return BlocBuilder<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
+              builder: (context, tvSeriesState) {
+                if (movieState.state == RequestState.Loading ||
+                    tvSeriesState.state == RequestState.Loading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (movieState.state == RequestState.Error) {
+                  return Center(
+                    key: const Key('error_message'),
+                    child: Text(movieState.message),
+                  );
+                } else if (tvSeriesState.state == RequestState.Error) {
+                  return Center(
+                    key: const Key('error_message'),
+                    child: Text(tvSeriesState.message),
+                  );
+                } else {
+                  final combinedList = [
+                    ...movieState.movies,
+                    ...tvSeriesState.tvSeries,
+                  ];
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
+                      final item = combinedList[index];
+                      return CombinedCard(item);
+                    },
+                    itemCount: combinedList.length,
+                  );
+                }
+              },
+            );
           },
         ),
       ),

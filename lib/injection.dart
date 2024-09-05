@@ -1,5 +1,10 @@
+import 'package:core/bloc/movie_detail_bloc.dart';
 import 'package:core/bloc/movie_list_bloc.dart';
+import 'package:core/bloc/popular_movies_bloc.dart';
 import 'package:core/bloc/search_bloc.dart';
+import 'package:core/bloc/top_rated_movies_bloc.dart';
+import 'package:core/bloc/watchlist_movies_bloc.dart';
+import 'package:core/bloc/watchlist_tv_series_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:core/core.dart';
@@ -23,7 +28,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => MovieDetailNotifier(
+    () => MovieDetailBloc(
       getMovieDetail: locator(),
       getMovieRecommendations: locator(),
       getWatchListStatus: locator(),
@@ -56,8 +61,8 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => PopularMoviesNotifier(
-      locator(),
+    () => PopularMoviesBloc(
+      getPopularMovies: locator(),
     ),
   );
   locator.registerFactory(
@@ -66,7 +71,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => TopRatedMoviesNotifier(
+    () => TopRatedMoviesBloc(
       getTopRatedMovies: locator(),
     ),
   );
@@ -76,12 +81,12 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => WatchlistMovieNotifier(
+    () => WatchlistMoviesBloc(
       getWatchlistMovies: locator(),
     ),
   );
   locator.registerFactory(
-    () => WatchlistTvSeriesNotifier(
+    () => WatchlistTvSeriesBloc(
       getWatchlistTvSeries: locator(),
     ),
   );
