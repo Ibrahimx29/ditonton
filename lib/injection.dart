@@ -1,8 +1,14 @@
 import 'package:core/bloc/movie_detail_bloc.dart';
 import 'package:core/bloc/movie_list_bloc.dart';
+import 'package:core/bloc/now_playing_tv_series_bloc.dart';
 import 'package:core/bloc/popular_movies_bloc.dart';
+import 'package:core/bloc/popular_tv_series_bloc.dart';
 import 'package:core/bloc/search_bloc.dart';
 import 'package:core/bloc/top_rated_movies_bloc.dart';
+import 'package:core/bloc/top_rated_tv_series_bloc.dart';
+import 'package:core/bloc/tv_search_bloc.dart';
+import 'package:core/bloc/tv_series_detail_bloc.dart';
+import 'package:core/bloc/tv_series_list_bloc.dart';
 import 'package:core/bloc/watchlist_movies_bloc.dart';
 import 'package:core/bloc/watchlist_tv_series_bloc.dart';
 import 'package:http/http.dart' as http;
@@ -21,7 +27,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => TvSeriesListNotifier(
+    () => TvSeriesListBloc(
       getNowPlayingTvSeries: locator(),
       getPopularTvSeries: locator(),
       getTopRatedTvSeries: locator(),
@@ -37,7 +43,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => TvSeriesDetailNotifier(
+    () => TvSeriesDetailBloc(
       getTvSeriesDetail: locator(),
       getTvSeriesRecommendations: locator(),
       getWatchListStatus: locator(),
@@ -46,18 +52,8 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => MovieSearchNotifier(
-      searchMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvSeriesSearchNotifier(
-      searchTvSeries: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => NowPlayingTvSeriesNotifier(
-      locator(),
+    () => NowPlayingTvSeriesBloc(
+      getNowPGetNowPlayingTvSeries: locator(),
     ),
   );
   locator.registerFactory(
@@ -66,8 +62,8 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => PopularTvSeriesNotifier(
-      locator(),
+    () => PopularTvSeriesBloc(
+      getPopularTvSeries: locator(),
     ),
   );
   locator.registerFactory(
@@ -76,7 +72,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => TopRatedTvSeriesNotifier(
+    () => TopRatedTvSeriesBloc(
       getTopRatedTvSeries: locator(),
     ),
   );
@@ -92,6 +88,11 @@ void init() {
   );
   locator.registerFactory(
     () => SearchBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvSearchBloc(
       locator(),
     ),
   );

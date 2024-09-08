@@ -5,7 +5,6 @@ import 'package:core/domain/entities/genre.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:provider/provider.dart';
 
 class MovieDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/detail';
@@ -105,22 +104,9 @@ class DetailContent extends StatelessWidget {
                               movie.title,
                               style: kHeading5,
                             ),
-                            ElevatedButton(
-                              onPressed: () async {
-                                final movieDetailBloc =
-                                    context.read<MovieDetailBloc>();
-
-                                if (isAddedWatchlist) {
-                                  movieDetailBloc
-                                      .add(RemoveFromWatchlist(movie));
-                                } else {
-                                  movieDetailBloc.add(AddToWatchlist(movie));
-                                }
-
-                                final message =
-                                    movieDetailBloc.state.watchlistMessage;
-
-                                print(message);
+                            BlocListener<MovieDetailBloc, MovieDetailState>(
+                              listener: (context, state) {
+                                var message = state.watchlistMessage;
 
                                 if (message ==
                                         MovieDetailBloc
@@ -133,24 +119,38 @@ class DetailContent extends StatelessWidget {
                                       content: Text(message),
                                     ),
                                   );
-                                } else {
+                                } else if (message.isNotEmpty) {
                                   showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          content: Text(message),
-                                        );
-                                      });
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        content: Text(message),
+                                      );
+                                    },
+                                  );
                                 }
                               },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  !isAddedWatchlist
-                                      ? const Icon(Icons.add)
-                                      : const Icon(Icons.check),
-                                  Text('$isAddedWatchlist'),
-                                ],
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  final movieDetailBloc =
+                                      context.read<MovieDetailBloc>();
+
+                                  if (isAddedWatchlist) {
+                                    movieDetailBloc
+                                        .add(RemoveFromWatchlist(movie));
+                                  } else {
+                                    movieDetailBloc.add(AddToWatchlist(movie));
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    !isAddedWatchlist
+                                        ? const Icon(Icons.add)
+                                        : const Icon(Icons.check),
+                                    const Text('Watchlist'),
+                                  ],
+                                ),
                               ),
                             ),
                             Text(
@@ -198,7 +198,7 @@ class DetailContent extends StatelessWidget {
                                   return Text(state.message);
                                 } else if (state.recommendationState ==
                                     RequestState.Loaded) {
-                                  return Container(
+                                  return SizedBox(
                                     height: 150,
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,

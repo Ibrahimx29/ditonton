@@ -41,7 +41,7 @@ void main() {
     voteCount: 13507,
   );
   final tMovieList = <Movie>[tMovieModel];
-  final tQuery = 'spiderman';
+  const tQuery = 'spiderman';
 
   group('search movies', () {
     test('should change state to loading when usecase is called', () async {

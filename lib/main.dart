@@ -1,9 +1,15 @@
 import 'package:about/about.dart';
 import 'package:core/bloc/movie_detail_bloc.dart';
 import 'package:core/bloc/movie_list_bloc.dart';
+import 'package:core/bloc/now_playing_tv_series_bloc.dart';
 import 'package:core/bloc/popular_movies_bloc.dart';
+import 'package:core/bloc/popular_tv_series_bloc.dart';
 import 'package:core/bloc/search_bloc.dart';
 import 'package:core/bloc/top_rated_movies_bloc.dart';
+import 'package:core/bloc/top_rated_tv_series_bloc.dart';
+import 'package:core/bloc/tv_search_bloc.dart';
+import 'package:core/bloc/tv_series_detail_bloc.dart';
+import 'package:core/bloc/tv_series_list_bloc.dart';
 import 'package:core/bloc/watchlist_movies_bloc.dart';
 import 'package:core/bloc/watchlist_tv_series_bloc.dart';
 import 'package:core/core.dart';
@@ -26,35 +32,29 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<MovieListBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvSeriesListNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<TvSeriesListBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<MovieDetailBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvSeriesDetailNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<TvSeriesDetailBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieSearchNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvSeriesSearchNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<NowPlayingTvSeriesNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<NowPlayingTvSeriesBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<TopRatedMoviesBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedTvSeriesNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<TopRatedTvSeriesBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<PopularMoviesBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<PopularTvSeriesNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<PopularTvSeriesBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<WatchlistMoviesBloc>(),
@@ -64,6 +64,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.locator<SearchBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TvSearchBloc>(),
         ),
       ],
       child: MaterialApp(
