@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:core/common/encrypt.dart';
 import 'package:core/data/models/tv_series_table.dart';
 import 'package:sqflite_sqlcipher/sqflite.dart';
 
@@ -30,7 +29,7 @@ class TvSeriesDatabaseHelper {
       databasePath,
       version: 1,
       onCreate: _onCreate,
-      password: encrypt('verysafe321'),
+      password: 'verysafe321',
     );
     return db;
   }

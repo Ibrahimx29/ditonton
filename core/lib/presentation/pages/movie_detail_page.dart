@@ -104,53 +104,40 @@ class DetailContent extends StatelessWidget {
                               movie.title,
                               style: kHeading5,
                             ),
-                            BlocListener<MovieDetailBloc, MovieDetailState>(
-                              listener: (context, state) {
-                                var message = state.watchlistMessage;
+                            ElevatedButton(
+                              onPressed: () {
+                                final movieDetailBloc =
+                                    context.read<MovieDetailBloc>();
 
-                                if (message ==
-                                        MovieDetailBloc
-                                            .watchlistAddSuccessMessage ||
-                                    message ==
-                                        MovieDetailBloc
-                                            .watchlistRemoveSuccessMessage) {
+                                if (isAddedWatchlist) {
+                                  movieDetailBloc
+                                      .add(RemoveFromWatchlist(movie));
+
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(message),
+                                    const SnackBar(
+                                      content: Text(MovieDetailBloc
+                                          .watchlistRemoveSuccessMessage),
                                     ),
                                   );
-                                } else if (message.isNotEmpty) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                        content: Text(message),
-                                      );
-                                    },
+                                } else {
+                                  movieDetailBloc.add(AddToWatchlist(movie));
+
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(MovieDetailBloc
+                                          .watchlistAddSuccessMessage),
+                                    ),
                                   );
                                 }
                               },
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  final movieDetailBloc =
-                                      context.read<MovieDetailBloc>();
-
-                                  if (isAddedWatchlist) {
-                                    movieDetailBloc
-                                        .add(RemoveFromWatchlist(movie));
-                                  } else {
-                                    movieDetailBloc.add(AddToWatchlist(movie));
-                                  }
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    !isAddedWatchlist
-                                        ? const Icon(Icons.add)
-                                        : const Icon(Icons.check),
-                                    const Text('Watchlist'),
-                                  ],
-                                ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  !isAddedWatchlist
+                                      ? const Icon(Icons.add)
+                                      : const Icon(Icons.check),
+                                  const Text('Watchlist'),
+                                ],
                               ),
                             ),
                             Text(

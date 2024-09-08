@@ -104,55 +104,40 @@ class DetailContent2 extends StatelessWidget {
                               tvSeries.originalName,
                               style: kHeading5,
                             ),
-                            BlocListener<TvSeriesDetailBloc,
-                                TvSeriesDetailState>(
-                              listener: (context, state) {
-                                var message = state.watchlistMessage;
+                            ElevatedButton(
+                              onPressed: () {
+                                final movieDetailBloc =
+                                    context.read<TvSeriesDetailBloc>();
 
-                                if (message ==
-                                        TvSeriesDetailBloc
-                                            .watchlistAddSuccessMessage ||
-                                    message ==
-                                        TvSeriesDetailBloc
-                                            .watchlistRemoveSuccessMessage) {
+                                if (isAddedWatchlist) {
+                                  movieDetailBloc
+                                      .add(RemoveFromWatchlist(tvSeries));
+
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(message),
+                                    const SnackBar(
+                                      content: Text(TvSeriesDetailBloc
+                                          .watchlistRemoveSuccessMessage),
                                     ),
                                   );
-                                } else if (message.isNotEmpty) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                        content: Text(message),
-                                      );
-                                    },
+                                } else {
+                                  movieDetailBloc.add(AddToWatchlist(tvSeries));
+
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(TvSeriesDetailBloc
+                                          .watchlistAddSuccessMessage),
+                                    ),
                                   );
                                 }
                               },
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  final movieDetailBloc =
-                                      context.read<TvSeriesDetailBloc>();
-
-                                  if (isAddedWatchlist) {
-                                    movieDetailBloc
-                                        .add(RemoveFromWatchlist(tvSeries));
-                                  } else {
-                                    movieDetailBloc
-                                        .add(AddToWatchlist(tvSeries));
-                                  }
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    !isAddedWatchlist
-                                        ? const Icon(Icons.add)
-                                        : const Icon(Icons.check),
-                                    const Text('Watchlist'),
-                                  ],
-                                ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  !isAddedWatchlist
+                                      ? const Icon(Icons.add)
+                                      : const Icon(Icons.check),
+                                  const Text('Watchlist'),
+                                ],
                               ),
                             ),
                             Text(

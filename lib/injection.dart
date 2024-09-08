@@ -53,7 +53,7 @@ void init() {
   );
   locator.registerFactory(
     () => NowPlayingTvSeriesBloc(
-      getNowPGetNowPlayingTvSeries: locator(),
+      getNowPlayingTvSeries: locator(),
     ),
   );
   locator.registerFactory(

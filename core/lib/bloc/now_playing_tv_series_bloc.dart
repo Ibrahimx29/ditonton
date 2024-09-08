@@ -7,9 +7,9 @@ part 'now_playing_tv_series_state.dart';
 
 class NowPlayingTvSeriesBloc
     extends Bloc<NowPlayingTvSeriesEvent, NowPlayingTvSeriesState> {
-  final GetNowPlayingTvSeries getNowPGetNowPlayingTvSeries;
+  final GetNowPlayingTvSeries getNowPlayingTvSeries;
 
-  NowPlayingTvSeriesBloc({required this.getNowPGetNowPlayingTvSeries})
+  NowPlayingTvSeriesBloc({required this.getNowPlayingTvSeries})
       : super(NowPlayingTvSeriesState.initial()) {
     on<FetchNowPlayingTvSeries>(_onFetchNowPlayingTvSeries);
   }
@@ -19,7 +19,7 @@ class NowPlayingTvSeriesBloc
     Emitter<NowPlayingTvSeriesState> emit,
   ) async {
     emit(state.copyWith(state: RequestState.Loading));
-    final result = await getNowPGetNowPlayingTvSeries.execute();
+    final result = await getNowPlayingTvSeries.execute();
     result.fold(
       (failure) {
         emit(state.copyWith(
