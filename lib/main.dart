@@ -13,13 +13,19 @@ import 'package:core/bloc/tv_series_list_bloc.dart';
 import 'package:core/bloc/watchlist_movies_bloc.dart';
 import 'package:core/bloc/watchlist_tv_series_bloc.dart';
 import 'package:core/core.dart';
+import 'package:ditonton/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   di.init();
   runApp(MyApp());
 }

@@ -11,6 +11,7 @@ import 'package:core/bloc/tv_series_detail_bloc.dart';
 import 'package:core/bloc/tv_series_list_bloc.dart';
 import 'package:core/bloc/watchlist_movies_bloc.dart';
 import 'package:core/bloc/watchlist_tv_series_bloc.dart';
+import 'package:core/data/datasources/ssl_pinning_helper.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:core/core.dart';
@@ -146,9 +147,15 @@ void init() {
 
   // data sources
   locator.registerLazySingleton<MovieRemoteDataSource>(
-      () => MovieRemoteDataSourceImpl(client: locator()));
+    () => MovieRemoteDataSourceImpl(
+      sslPinningHelper: locator(),
+    ),
+  );
   locator.registerLazySingleton<TvSeriesRemoteDataSource>(
-      () => TvSeriesRemoteDataSourceImpl(client: locator()));
+    () => TvSeriesRemoteDataSourceImpl(
+      sslPinningHelper: locator(),
+    ),
+  );
   locator.registerLazySingleton<MovieLocalDataSource>(
       () => MovieLocalDataSourceImpl(databaseHelper: locator()));
   locator.registerLazySingleton<TvSeriesLocalDataSource>(
@@ -159,6 +166,9 @@ void init() {
       .registerLazySingleton<MovieDatabaseHelper>(() => MovieDatabaseHelper());
   locator.registerLazySingleton<TvSeriesDatabaseHelper>(
       () => TvSeriesDatabaseHelper());
+
+  // SSL Pinning Helpen
+  locator.registerLazySingleton<SSLPinningHelper>(() => SSLPinningHelper());
 
   // external
   locator.registerLazySingleton(() => http.Client());
