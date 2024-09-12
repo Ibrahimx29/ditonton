@@ -16,7 +16,7 @@ void main() {
   });
 
   final tTvSeries = <Serial>[];
-  final tQuery = 'House of the Dragon';
+  const tQuery = 'House of the Dragon';
 
   test('should get list of tv series from the repository', () async {
     // arrange

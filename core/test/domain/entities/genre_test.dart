@@ -2,7 +2,7 @@ import 'package:core/domain/entities/genre.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tGenre = Genre(
+  const tGenre = Genre(
     id: 1,
     name: 'Action',
   );
@@ -12,7 +12,7 @@ void main() {
   });
 
   test('should be equal when properties are the same', () {
-    final anotherTGenre = Genre(
+    const anotherTGenre = Genre(
       id: 1,
       name: 'Action',
     );
@@ -21,7 +21,7 @@ void main() {
   });
 
   test('should not be equal when properties are different', () {
-    final differentGenre = Genre(
+    const differentGenre = Genre(
       id: 2,
       name: 'Comedy',
     );

@@ -1,12 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
-import 'package:core/domain/entities/tv_series.dart';
-import 'package:core/domain/usecases/get_tv_series_detail.dart';
-import 'package:core/domain/usecases/get_tv_series_recommendations.dart';
-import 'package:core/domain/usecases/get_tv_series_watchlist_status.dart';
-import 'package:core/domain/usecases/remove_tv_series_watchlist.dart';
-import 'package:core/domain/usecases/save_tv_series_watchlist.dart';
-import 'package:core/presentation/provider/tv_series_detail_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -48,12 +41,12 @@ void main() {
       });
   });
 
-  final tId = 1;
+  const tId = 1;
 
   final tSeries = Serial(
     adult: false,
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     originalName: 'originalName',
     overview: 'overview',
@@ -61,7 +54,7 @@ void main() {
     posterPath: 'posterPath',
     firstAirDate: 'firstAirDate',
     name: 'name',
-    originCountry: ['originCountry'],
+    originCountry: const ['originCountry'],
     originalLanguage: 'originalLanguage',
     voteAverage: 1,
     voteCount: 1,
@@ -70,7 +63,7 @@ void main() {
 
   void _arrangeUsecase() {
     when(mockGetTvSeriesDetail.execute(tId))
-        .thenAnswer((_) async => Right(testTvSeriesDetail));
+        .thenAnswer((_) async => const Right(testTvSeriesDetail));
     when(mockGetTvSeriesRecommendations.execute(tId))
         .thenAnswer((_) async => Right(tTvSeries));
   }
@@ -145,9 +138,9 @@ void main() {
     test('should update error message when request in successful', () async {
       // arrange
       when(mockGetTvSeriesDetail.execute(tId))
-          .thenAnswer((_) async => Right(testTvSeriesDetail));
+          .thenAnswer((_) async => const Right(testTvSeriesDetail));
       when(mockGetTvSeriesRecommendations.execute(tId))
-          .thenAnswer((_) async => Left(ServerFailure('Failed')));
+          .thenAnswer((_) async => const Left(ServerFailure('Failed')));
       // act
       await provider.fetchTvSeriesDetail(tId);
       // assert
@@ -169,7 +162,7 @@ void main() {
     test('should execute save watchlist when function called', () async {
       // arrange
       when(mockSaveWatchlist.execute(testTvSeriesDetail))
-          .thenAnswer((_) async => Right('Success'));
+          .thenAnswer((_) async => const Right('Success'));
       when(mockGetWatchlistStatus.execute(testTvSeriesDetail.id))
           .thenAnswer((_) async => true);
       // act
@@ -181,7 +174,7 @@ void main() {
     test('should execute remove watchlist when function called', () async {
       // arrange
       when(mockRemoveWatchlist.execute(testTvSeriesDetail))
-          .thenAnswer((_) async => Right('Removed'));
+          .thenAnswer((_) async => const Right('Removed'));
       when(mockGetWatchlistStatus.execute(testTvSeriesDetail.id))
           .thenAnswer((_) async => false);
       // act
@@ -193,7 +186,7 @@ void main() {
     test('should update watchlist status when add watchlist success', () async {
       // arrange
       when(mockSaveWatchlist.execute(testTvSeriesDetail))
-          .thenAnswer((_) async => Right('Added to Watchlist'));
+          .thenAnswer((_) async => const Right('Added to Watchlist'));
       when(mockGetWatchlistStatus.execute(testTvSeriesDetail.id))
           .thenAnswer((_) async => true);
       // act
@@ -208,7 +201,7 @@ void main() {
     test('should update watchlist message when add watchlist failed', () async {
       // arrange
       when(mockSaveWatchlist.execute(testTvSeriesDetail))
-          .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+          .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
       when(mockGetWatchlistStatus.execute(testTvSeriesDetail.id))
           .thenAnswer((_) async => false);
       // act
@@ -223,7 +216,7 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockGetTvSeriesDetail.execute(tId))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       when(mockGetTvSeriesRecommendations.execute(tId))
           .thenAnswer((_) async => Right(tTvSeries));
       // act

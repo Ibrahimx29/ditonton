@@ -1,10 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:core/domain/entities/tv_series.dart';
 import 'package:core/core.dart';
-import 'package:core/domain/usecases/get_now_playing_tv_series.dart';
-import 'package:core/domain/usecases/get_popular_tv_series.dart';
-import 'package:core/domain/usecases/get_top_rated_tv_series.dart';
-import 'package:core/presentation/provider/tv_series_list_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -40,7 +35,7 @@ void main() {
   final tSeries = Serial(
     adult: false,
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     originalName: 'originalName',
     overview: 'overview',
@@ -48,7 +43,7 @@ void main() {
     posterPath: 'posterPath',
     firstAirDate: 'firstAirDate',
     name: 'name',
-    originCountry: ['originCountry'],
+    originCountry: const ['originCountry'],
     originalLanguage: 'originalLanguage',
     voteAverage: 1,
     voteCount: 1,
@@ -95,7 +90,7 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockGetNowPlayingTvSeries.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchNowPlayingTvSeries();
       // assert
@@ -133,7 +128,7 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockGetPopularTvSeries.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchPopularTvSeries();
       // assert
@@ -170,7 +165,7 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockGetTopRatedTvSeries.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchTopRatedTvSeries();
       // assert

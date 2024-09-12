@@ -3,9 +3,9 @@ import 'package:core/domain/entities/genre.dart';
 import 'package:core/domain/entities/movie_detail.dart';
 
 void main() {
-  final tGenre = Genre(id: 1, name: 'Action');
+  const tGenre = Genre(id: 1, name: 'Action');
 
-  final tMovieDetail = MovieDetail(
+  const tMovieDetail = MovieDetail(
     adult: false,
     backdropPath: 'backdropPath',
     genres: [tGenre],
@@ -37,7 +37,7 @@ void main() {
   });
 
   test('should be equal when properties are the same', () {
-    final anotherMovieDetail = MovieDetail(
+    const anotherMovieDetail = MovieDetail(
       adult: false,
       backdropPath: 'backdropPath',
       genres: [tGenre],
@@ -56,7 +56,7 @@ void main() {
   });
 
   test('should not be equal when properties are different', () {
-    final differentMovieDetail = MovieDetail(
+    const differentMovieDetail = MovieDetail(
       adult: true,
       backdropPath: 'differentBackdropPath',
       genres: [tGenre],

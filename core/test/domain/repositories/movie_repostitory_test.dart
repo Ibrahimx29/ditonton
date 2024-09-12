@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:core/domain/entities/movie.dart';
-import 'package:core/domain/entities/movie_detail.dart';
 import 'package:core/core.dart';
 
 import '../../helpers/test_helper.mocks.dart';
@@ -15,7 +13,7 @@ void main() {
   });
 
   final tMovies = <Movie>[];
-  final tMovieDetail = MovieDetail(
+  const tMovieDetail = MovieDetail(
     adult: false,
     backdropPath: 'backdropPath',
     genres: [],
@@ -44,35 +42,35 @@ void main() {
     test('should return failure when the call is unsuccessful', () async {
       // arrange
       when(mockMovieRepository.getNowPlayingMovies())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       final result = await mockMovieRepository.getNowPlayingMovies();
       // assert
-      expect(result, Left(ServerFailure('Server Failure')));
+      expect(result, const Left(ServerFailure('Server Failure')));
     });
   });
 
   group('getMovieDetail', () {
-    final tId = 1;
+    const tId = 1;
 
     test('should return movie detail when the call is successful', () async {
       // arrange
       when(mockMovieRepository.getMovieDetail(tId))
-          .thenAnswer((_) async => Right(tMovieDetail));
+          .thenAnswer((_) async => const Right(tMovieDetail));
       // act
       final result = await mockMovieRepository.getMovieDetail(tId);
       // assert
-      expect(result, Right(tMovieDetail));
+      expect(result, const Right(tMovieDetail));
     });
 
     test('should return failure when the call is unsuccessful', () async {
       // arrange
       when(mockMovieRepository.getMovieDetail(tId))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       final result = await mockMovieRepository.getMovieDetail(tId);
       // assert
-      expect(result, Left(ServerFailure('Server Failure')));
+      expect(result, const Left(ServerFailure('Server Failure')));
     });
   });
 }

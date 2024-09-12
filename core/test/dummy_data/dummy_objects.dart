@@ -9,7 +9,7 @@ import 'package:core/domain/entities/tv_series_detail.dart';
 final testMovie = Movie(
   adult: false,
   backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-  genreIds: [14, 28],
+  genreIds: const [14, 28],
   id: 557,
   originalTitle: 'Spider-Man',
   overview:
@@ -26,9 +26,9 @@ final testMovie = Movie(
 final testTvSeries = Serial(
   adult: false,
   backdropPath: '/etj8E2o0Bud0HkONVQPjyCkIvpv.jpg',
-  genreIds: [10765, 18, 10759],
+  genreIds: const [10765, 18, 10759],
   id: 94997,
-  originCountry: ["US"],
+  originCountry: const ["US"],
   originalLanguage: "en",
   originalName: "House of the Dragon",
   overview:
@@ -45,7 +45,7 @@ final testMovieList = [testMovie];
 
 final testTvSeriesList = [testTvSeries];
 
-final testMovieDetail = MovieDetail(
+const testMovieDetail = MovieDetail(
   adult: false,
   backdropPath: 'backdropPath',
   genres: [Genre(id: 1, name: 'Action')],
@@ -60,7 +60,7 @@ final testMovieDetail = MovieDetail(
   voteCount: 1,
 );
 
-final testTvSeriesDetail = TvSeriesDetail(
+const testTvSeriesDetail = TvSeriesDetail(
   adult: false,
   backdropPath: 'backdropPath',
   genres: [Genre(id: 1, name: "Sci-Fi & Fantasy")],

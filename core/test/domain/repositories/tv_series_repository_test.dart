@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:core/domain/entities/tv_series.dart';
 import 'package:core/domain/entities/tv_series_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -15,7 +14,7 @@ void main() {
   });
 
   final tTvSeries = <Serial>[];
-  final tTvSeriesDetail = TvSeriesDetail(
+  const tTvSeriesDetail = TvSeriesDetail(
     adult: false,
     backdropPath: 'backdropPath',
     genres: [],
@@ -45,35 +44,35 @@ void main() {
     test('should return failure when the call is unsuccessful', () async {
       // arrange
       when(mockTvSeriesRepository.getNowPlayingTvSeries())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       final result = await mockTvSeriesRepository.getNowPlayingTvSeries();
       // assert
-      expect(result, Left(ServerFailure('Server Failure')));
+      expect(result, const Left(ServerFailure('Server Failure')));
     });
   });
 
   group('getMovieDetail', () {
-    final tId = 1;
+    const tId = 1;
 
     test('should return movie detail when the call is successful', () async {
       // arrange
       when(mockTvSeriesRepository.getTvSeriesDetail(tId))
-          .thenAnswer((_) async => Right(tTvSeriesDetail));
+          .thenAnswer((_) async => const Right(tTvSeriesDetail));
       // act
       final result = await mockTvSeriesRepository.getTvSeriesDetail(tId);
       // assert
-      expect(result, Right(tTvSeriesDetail));
+      expect(result, const Right(tTvSeriesDetail));
     });
 
     test('should return failure when the call is unsuccessful', () async {
       // arrange
       when(mockTvSeriesRepository.getTvSeriesDetail(tId))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       final result = await mockTvSeriesRepository.getTvSeriesDetail(tId);
       // assert
-      expect(result, Left(ServerFailure('Server Failure')));
+      expect(result, const Left(ServerFailure('Server Failure')));
     });
   });
 }

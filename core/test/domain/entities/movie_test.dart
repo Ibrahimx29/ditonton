@@ -5,7 +5,7 @@ void main() {
   final tMovie = Movie(
     adult: false,
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     originalTitle: 'originalTitle',
     overview: 'overview',
@@ -65,7 +65,7 @@ void main() {
     final anotherMovie = Movie(
       adult: false,
       backdropPath: 'backdropPath',
-      genreIds: [1, 2, 3],
+      genreIds: const [1, 2, 3],
       id: 1,
       originalTitle: 'originalTitle',
       overview: 'overview',
@@ -85,7 +85,7 @@ void main() {
     final differentMovie = Movie(
       adult: true,
       backdropPath: 'differentBackdropPath',
-      genreIds: [4, 5, 6],
+      genreIds: const [4, 5, 6],
       id: 2,
       originalTitle: 'differentOriginalTitle',
       overview: 'differentOverview',

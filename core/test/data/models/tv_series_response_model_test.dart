@@ -10,7 +10,7 @@ void main() {
   final tTvSeriesModel = TvModel(
     adult: false,
     backdropPath: "/path.jpg",
-    genreIds: [1, 2, 3, 4],
+    genreIds: const [1, 2, 3, 4],
     id: 1,
     originalName: "Original Name",
     overview: "Overview",

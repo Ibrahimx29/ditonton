@@ -1,6 +1,6 @@
 part of 'top_rated_movies_bloc.dart';
 
-sealed class TopRatedMoviesEvent extends Equatable {
+class TopRatedMoviesEvent extends Equatable {
   const TopRatedMoviesEvent();
 
   @override

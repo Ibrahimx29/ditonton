@@ -1,8 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
-import 'package:core/domain/entities/tv_series.dart';
-import 'package:core/domain/usecases/search_tv_series.dart';
-import 'package:core/presentation/provider/tv_series_search_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -28,7 +25,7 @@ void main() {
   final tTvSeriesModel = Serial(
     adult: false,
     backdropPath: '/etj8E2o0Bud0HkONVQPjyCkIvpv.jpg',
-    genreIds: [10765, 18, 10759],
+    genreIds: const [10765, 18, 10759],
     id: 94997,
     originalName: 'House of the Dragon',
     overview:
@@ -37,13 +34,13 @@ void main() {
     posterPath: '/t9XkeE7HzOsdQcDDDapDYh8Rrmt.jpg',
     firstAirDate: '2022-08-21',
     name: 'House of the Dragon',
-    originCountry: ['US'],
+    originCountry: const ['US'],
     originalLanguage: 'en',
     voteAverage: 8.409,
     voteCount: 4549,
   );
   final tTvSeriesList = <Serial>[tTvSeriesModel];
-  final tQuery = 'House of the Dragon';
+  const tQuery = 'House of the Dragon';
 
   group('search tv series', () {
     test('should change state to loading when usecase is called', () async {
@@ -72,7 +69,7 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockSearchTvSeries.execute(tQuery))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchTvSeriesSearch(tQuery);
       // assert

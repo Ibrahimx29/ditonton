@@ -41,11 +41,11 @@ void main() {
 
   const tId = 1;
   final tMovieList = <Movie>[testMovie];
-  final tMovieDetail = testMovieDetail;
+  const tMovieDetail = testMovieDetail;
 
   void _arrangeUsecase() {
     when(mockGetMovieDetail.execute(tId))
-        .thenAnswer((_) async => Right(tMovieDetail));
+        .thenAnswer((_) async => const Right(tMovieDetail));
     when(mockGetMovieRecommendations.execute(tId))
         .thenAnswer((_) async => Right(tMovieList));
   }
@@ -106,7 +106,7 @@ void main() {
         when(mockGetWatchlistStatus.execute(tId)).thenAnswer((_) async => true);
         return movieDetailBloc;
       },
-      act: (bloc) => bloc.add(AddToWatchlist(testMovieDetail)),
+      act: (bloc) => bloc.add(const AddToWatchlist(testMovieDetail)),
       expect: () => [
         // Directly check the final state
         const MovieDetailState(
@@ -125,7 +125,7 @@ void main() {
             .thenAnswer((_) async => false);
         return movieDetailBloc;
       },
-      act: (bloc) => bloc.add(RemoveFromWatchlist(testMovieDetail)),
+      act: (bloc) => bloc.add(const RemoveFromWatchlist(testMovieDetail)),
       expect: () => [
         // Directly check the final state
         const MovieDetailState(

@@ -1,8 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
-import 'package:core/domain/entities/tv_series.dart';
-import 'package:core/domain/usecases/get_popular_tv_series.dart';
-import 'package:core/presentation/provider/popular_tv_series_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -27,7 +24,7 @@ void main() {
   final tSeries = Serial(
     adult: false,
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     originalName: 'originalName',
     overview: 'overview',
@@ -35,7 +32,7 @@ void main() {
     posterPath: 'posterPath',
     firstAirDate: 'firstAirDate',
     name: 'name',
-    originCountry: ["US"],
+    originCountry: const ["US"],
     originalLanguage: 'originalLanguage',
     voteAverage: 1,
     voteCount: 1,
@@ -70,7 +67,7 @@ void main() {
   test('should return error when data is unsuccessful', () async {
     // arrange
     when(mockGetPopularTvSeries.execute())
-        .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+        .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
     // act
     await notifier.fetchPopularTvSeries();
     // assert
