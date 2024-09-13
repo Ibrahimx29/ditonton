@@ -54,6 +54,12 @@ class TvSearchPage extends StatelessWidget {
                       itemCount: result.length,
                     ),
                   );
+                } else if (state is SearchError) {
+                  return Expanded(
+                    child: Center(
+                      child: Text(state.message),
+                    ),
+                  );
                 } else {
                   return Expanded(
                     child: Container(),

@@ -1,6 +1,6 @@
 part of 'tv_search_bloc.dart';
 
-sealed class TvSearchState extends Equatable {
+class TvSearchState extends Equatable {
   const TvSearchState();
 
   @override

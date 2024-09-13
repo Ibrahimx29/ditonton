@@ -101,7 +101,8 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
                 } else if (state.nowPlayingState == RequestState.Loaded) {
                   return TvSeriesList(state.nowPlayingTvSeries);
                 } else {
-                  return const Text('Failed');
+                  return const Text('Failed',
+                      key: Key('now_playing_error_message'));
                 }
               }),
               _buildSubHeading(
@@ -118,7 +119,8 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
                 } else if (state.popularTvSeriesState == RequestState.Loaded) {
                   return TvSeriesList(state.popularTvSeries);
                 } else {
-                  return const Text('Failed');
+                  return const Text('Failed',
+                      key: Key('popular_movies_error_message'));
                 }
               }),
               _buildSubHeading(
@@ -135,7 +137,8 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
                 } else if (state.topRatedTvSeriesState == RequestState.Loaded) {
                   return TvSeriesList(state.topRatedTvSeries);
                 } else {
-                  return const Text('Failed');
+                  return const Text('Failed',
+                      key: Key('top_rated_movies_error_message'));
                 }
               }),
             ],
