@@ -7,9 +7,6 @@ workflows:
       xcode: latest
       cocoapods: default
       node: 16.13.0
-      cache:
-        cache_paths:
-          - /Users/builder/.pub-cache
     scripts:
       # Install dependencies
       - name: Install Flutter dependencies
@@ -26,3 +23,7 @@ workflows:
       - build/**/outputs/**/*.aab
       - build/**/outputs/**/*.ipa
       - flutter_drive/*.mp4
+
+    cache:
+      cache_paths:
+        - /Users/builder/.pub-cache
