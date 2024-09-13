@@ -1,6 +1,6 @@
 part of 'now_playing_tv_series_bloc.dart';
 
-sealed class NowPlayingTvSeriesEvent extends Equatable {
+class NowPlayingTvSeriesEvent extends Equatable {
   const NowPlayingTvSeriesEvent();
 
   @override

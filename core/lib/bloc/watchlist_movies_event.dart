@@ -1,6 +1,6 @@
 part of 'watchlist_movies_bloc.dart';
 
-sealed class WatchlistMoviesEvent extends Equatable {
+class WatchlistMoviesEvent extends Equatable {
   const WatchlistMoviesEvent();
 
   @override

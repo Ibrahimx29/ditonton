@@ -1,6 +1,6 @@
 part of 'top_rated_tv_series_bloc.dart';
 
-sealed class TopRatedTvSeriesEvent extends Equatable {
+class TopRatedTvSeriesEvent extends Equatable {
   const TopRatedTvSeriesEvent();
 
   @override
@@ -8,4 +8,3 @@ sealed class TopRatedTvSeriesEvent extends Equatable {
 }
 
 class FetchTopRatedTvSeries extends TopRatedTvSeriesEvent {}
-
