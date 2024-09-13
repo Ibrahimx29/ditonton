@@ -16,7 +16,7 @@ workflows:
       
       # Run tests in core/test folder with verbose mode
       - name: Run Flutter tests
-        script: flutter test core/test --verbose
+        script: flutter test core/test
 
     artifacts:
       - build/**/outputs/**/*.apk
